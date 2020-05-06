@@ -4,7 +4,7 @@ from sqlalchemy import exc
 from database.models import setup_db, db_drop_and_create_all, Movie, Actor
 from auth.auth import AuthError, requires_auth
 
-database_path = "postgres://gfczqbkrkydcmz:632822ecd4d714c8697567d7a2e6d7eaafabc35a44b52dd97baf748c1fc14e2e@ec2-3-213-192-58.compute-1.amazonaws.com:5432/d9ju8u2sfkf4h4"
+database_path = "postgresql://postgres:password@localhost:5432/castingagency"
 
 
 def create_app(test_config=None):
