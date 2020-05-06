@@ -4,9 +4,38 @@ from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db
 
-assistant_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5Y2ZjNzNkZTQzMWEwYzhkNjdiYjNkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODcwMjI4MywiZXhwIjoxNTg4Nzg4NjgzLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.awYpPoYOxk-ZDlnmeDYNCLXkthlC9pKI2s7GFhNJBTaV4ETdgx7_6NGEfjLH5DMDWX0rUdkppxmraS0AjL58yJdjUP2HEwtkiFpe9qvggsQXRLlHis1bWyYFI3irg45Ctmlnm6BuBPLM-0rFQRP_t2BU_YxnmTTjy-NkohFBZKfxaM9T-VJPAfZBeLI0ilemtnYznUlfI7brEAKnGVAnc-mejH39eyAWyrkp5QeMdYMT8LGJrq0ybP38rCurEdx7-ZjAoqv22rN5tjHqKIcnp9a92nMzB64qy1ohB6yBGGQOMIij1qYZyr7aKJDOKKcyZjtz17lh_lvrtBb3onuz6A'
-director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWViMTkwYTE1NGIxNGMwYzEyNzk3MDJiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NjgxMiwiZXhwIjoxNTg4NzgzMjEyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZWRpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiXX0.bxRBQPrpSlPZojqeKSNdkvoVZOQ8IbnMCChx8agPQiAPYzXbGLHQfSK1LcBnnXCcRM_ozKsRGeUdpOllOt59h1aA6UquUScIru-ysx-5XJIeJywgbzK0n_jSormEGO8-vvjvIfdJYKKB0hGckMriEuI_bkdG2OsIfnD6mAlvt8zdiNuHH3PvhC_u2-ObbZqbB-caz8lVsgw2yg8a2Rb5yBeembuezSBPxlr6ArjF4DFLk6ufHp2RZn1Ll6Qg7PG72xosHqEMKjVB6Jet5CjbMV6a948geivm5jfML0NtoBxR7ZCkp9hUuitPp_KmTiIBN0-G1vwyWaC_ztGe2xMmQQ'
-producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5NDkyMTAyNGU0YmMwYmUzNzM1ZjI2IiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NzQ2MiwiZXhwIjoxNTg4NzgzODYyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZWRpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiLCJwb3N0Om1vdmllIl19.ZBUkhDbVByD6QxcW39vzz0L1jsdKaPqaAq_DqOuvEPZl2lQzifXx1pK8tHrAGbJOE-kdDhMLjjWONzTn-VFy870Gof1veLmzmO-BOAPX-UkpEsROtOodewubVYo20-vJtGv1XbMC83cBRBM_CEw9YAZ1yTXR0oU5nyBvr9wk4BeXBSKlOlTMjXRVlXOxRfxrU0pLU2-D5SWdpSExug1o0z1SqXp547hBkfnjvHDNMCf3WZw6vl2SJ6o5DtArkYlHN1UGNxbjZcFPv9Cu5PGyu7PCwJ6vNz3F6XCI0GsPcjLCV2vJPjr_4fU7V6g1E96tryXooqCXOgQl8aU5EUZ7Uw'
+assistant_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
+                  '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5Y2ZjNzNkZ' \
+                  'TQzMWEwYzhkNjdiYjNkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODcwMjI4MywiZXh' \
+                  'wIjoxNTg4Nzg4NjgzLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb' \
+                  '3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.awYpPoYOxk-' \
+                  'ZDlnmeDYNCLXkthlC9pKI2s7GFhNJBTaV4ETdgx7_6NGEfjLH5DMDWX0rUdkppxmraS0AjL58yJdjUP' \
+                  '2HEwtkiFpe9qvggsQXRLlHis1bWyYFI3irg45Ctmlnm6BuBPLM-0rFQRP_t2BU_YxnmTTjy-NkohFBZ' \
+                  'KfxaM9T-VJPAfZBeLI0ilemtnYznUlfI7brEAKnGVAnc-mejH39eyAWyrkp5QeMdYMT8LGJrq0ybP3' \
+                  '8rCurEdx7-ZjAoqv22rN5tjHqKIcnp9a92nMzB64qy1ohB6yBGGQOMIij1qYZyr7aKJDOKKcyZjtz1' \
+                  '7lh_lvrtBb3onuz6A '
+director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
+                 '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWViMTkwYTE1' \
+                 'NGIxNGMwYzEyNzk3MDJiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NjgxMiwiZ' \
+                 'XhwIjoxNTg4NzgzMjEyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsIn' \
+                 'Njb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZWRpdDphY3RvciIsImVkaXQ' \
+                 '6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiXX0.bxRBQPrpSlPZ' \
+                 'ojqeKSNdkvoVZOQ8IbnMCChx8agPQiAPYzXbGLHQfSK1LcBnnXCcRM_ozKsRGeUdpOllOt59h1aA6' \
+                 'UquUScIru-ysx-5XJIeJywgbzK0n_jSormEGO8-vvjvIfdJYKKB0hGckMriEuI_bkdG2OsIfnD6mA' \
+                 'lvt8zdiNuHH3PvhC_u2-ObbZqbB-caz8lVsgw2yg8a2Rb5yBeembuezSBPxlr6ArjF4DFLk6ufHp2R' \
+                 'Zn1Ll6Qg7PG72xosHqEMKjVB6Jet5CjbMV6a948geivm5jfML0NtoBxR7ZCkp9hUuitPp_KmTiIBN0' \
+                 '-G1vwyWaC_ztGe2xMmQQ '
+producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
+                 '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5NDkyMTAy' \
+                 'NGU0YmMwYmUzNzM1ZjI2IiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NzQ2MiwiZ' \
+                 'XhwIjoxNTg4NzgzODYyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsIn' \
+                 'Njb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZW' \
+                 'RpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YW' \
+                 'N0b3IiLCJwb3N0Om1vdmllIl19.ZBUkhDbVByD6QxcW39vzz0L1jsdKaPqaAq_DqOuvEPZl2lQzi' \
+                 'fXx1pK8tHrAGbJOE-kdDhMLjjWONzTn-VFy870Gof1veLmzmO-BOAPX-UkpEsROtOodewubVYo20-' \
+                 'vJtGv1XbMC83cBRBM_CEw9YAZ1yTXR0oU5nyBvr9wk4BeXBSKlOlTMjXRVlXOxRfxrU0pLU2-D5SW' \
+                 'dpSExug1o0z1SqXp547hBkfnjvHDNMCf3WZw6vl2SJ6o5DtArkYlHN1UGNxbjZcFPv9Cu5PGyu7PC' \
+                 'wJ6vNz3F6XCI0GsPcjLCV2vJPjr_4fU7V6g1E96tryXooqCXOgQl8aU5EUZ7Uw '
 
 
 class CastingAgencyTestCase(unittest.TestCase):
@@ -48,17 +77,6 @@ class CastingAgencyTestCase(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-####################################################################
-    # PUBLIC/ NO PERMISSIONS
-    def test_get_movies_and_actors_public(self):
-        response = self.client().get('/')
-        data = json.loads(response.data)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['movies'])
-        self.assertTrue(data['actors'])
 
     # CASTING ASSISTANT PERMISSIONS
     def test_get_movies_casting_assistant(self):

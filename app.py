@@ -150,15 +150,21 @@ def create_app(test_config=None):
     @app.route("/movies/<int:movie_id>", methods=['PATCH'])
     @requires_auth(permission='edit:movie')
     def edit_movie(payload, movie_id):
-        body = request.get_json()
 
-        movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
+        movie = Movie.query.get(movie_id)
 
         if not movie:
             abort(404)
-        else:
-            movie.title = body['title']
-            movie.release_date = body['release_date']
+
+        try:
+            body = request.get_json()
+            title = body['title']
+            release_date = body['release_date']
+
+            if title:
+                movie.title = title
+            if release_date:
+                movie.release_date = release_date
 
             movie.update()
 
@@ -167,20 +173,30 @@ def create_app(test_config=None):
                 "status_code": 200,
                 "movie": movie.formatted()
             })
+        except exc.SQLAlchemyError:
+            abort(422)
 
     @app.route("/actors/<int:actor_id>", methods=['PATCH'])
     @requires_auth(permission='edit:actor')
     def edit_actor(payload, actor_id):
-        body = request.get_json()
 
-        actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
+        actor = Actor.query.get(actor_id)
 
         if not actor:
             abort(404)
-        else:
-            actor.name = body['name']
-            actor.age = body['age']
-            actor.gender = body['gender']
+
+        try:
+            body = request.get_json()
+            name = body['name']
+            age = body['age']
+            gender = body['gender']
+
+            if name:
+                actor.name = name
+            if age:
+                actor.age = age
+            if gender:
+                actor.gender = gender
 
             actor.update()
 
@@ -189,6 +205,8 @@ def create_app(test_config=None):
                 "status_code": 200,
                 "actor": actor.formatted()
             })
+        except exc.SQLAlchemyError:
+            abort(422)
 
     # Error Handling
     @app.errorhandler(AuthError)
