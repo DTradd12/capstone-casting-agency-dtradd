@@ -46,6 +46,7 @@ class Movie(db.Model):
         db.session.commit()
 
     def update(self):
+        db.session.add(self)
         db.session.commit()
 
 
@@ -79,4 +80,5 @@ class Actor(db.Model):
         db.session.commit()
 
     def update(self):
+        db.session.add(self)
         db.session.commit()

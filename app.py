@@ -158,8 +158,8 @@ def create_app(test_config=None):
 
         try:
             body = request.get_json()
-            title = body['title']
-            release_date = body['release_date']
+            title = body.get('title', None)
+            release_date = body.get('release_date', None)
 
             if title:
                 movie.title = title
@@ -187,9 +187,9 @@ def create_app(test_config=None):
 
         try:
             body = request.get_json()
-            name = body['name']
-            age = body['age']
-            gender = body['gender']
+            name = body.get('name', None)
+            age = body.get('age', None)
+            gender = body.get('gender', None)
 
             if name:
                 actor.name = name
