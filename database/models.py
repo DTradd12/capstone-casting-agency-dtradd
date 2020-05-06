@@ -1,5 +1,3 @@
-from flask import Flask
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 database_path = "postgresql://postgres:password@localhost:5432/castingagency"
@@ -22,7 +20,7 @@ def db_drop_and_create_all():
 
 
 class Movie(db.Model):
-    __table_name__ = 'movie'
+    __table_name__ = 'movies'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=True, nullable=False)
@@ -34,7 +32,7 @@ class Movie(db.Model):
 
     def formatted(self):
         return {
-            "id" : self.id,
+            "id": self.id,
             "title": self.title,
             "release date": self.release_date
         }
@@ -52,7 +50,7 @@ class Movie(db.Model):
 
 
 class Actor(db.Model):
-    __table_name = 'actor'
+    __table_name = 'actors'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
