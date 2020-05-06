@@ -1,10 +1,12 @@
+import os
 from flask import request, abort, jsonify, Flask
 from flask_cors import CORS
 from sqlalchemy import exc
 from models import setup_db, Movie, Actor
 from auth import AuthError, requires_auth
 
-database_path = "postgresql://postgres:password@localhost:5432/castingagency"
+# database_path = os.environ['database_path']
+database_path = 'postgresql://postgres:password@localhost:5432/castingagency'
 
 
 def create_app(test_config=None):
