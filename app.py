@@ -5,9 +5,6 @@ from sqlalchemy import exc
 from models import setup_db, Movie, Actor
 from auth import AuthError, requires_auth
 
-# database_path = os.environ['database_path']
-database_path = 'postgresql://postgres:password@localhost:5432/castingagency'
-
 
 def create_app(test_config=None):
     # create and configure the app
@@ -20,17 +17,7 @@ def create_app(test_config=None):
     # Routes
     @app.route("/")
     def index():
-        movies = Movie.query.order_by(Movie.id)
-        actors = Actor.query.order_by(Actor.id)
-        movie_list = [movie.formatted() for movie in movies]
-        actor_list = [actor.formatted() for actor in actors]
-
-        return jsonify({
-            "success": True,
-            "status_code": 200,
-            "movies": movie_list,
-            "actors": actor_list
-        })
+        return "Welcome to the casting agency!"
 
     @app.route("/login")
     def login():
@@ -257,6 +244,5 @@ def create_app(test_config=None):
 
 app = create_app()
 
-# Default port:
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=8080, debug=True)
