@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="224781ef-7346-4f92-9d31-6d1ee13aefb6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +19,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -34,7 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588777295197</updated>
       <workItem from="1588777296564" duration="14000" />
-      <workItem from="1588777320223" duration="343000" />
+      <workItem from="1588777320223" duration="638000" />
     </task>
     <servers />
   </component>
