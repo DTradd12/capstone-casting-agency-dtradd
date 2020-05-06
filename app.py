@@ -1,8 +1,8 @@
 from flask import request, abort, jsonify, Flask
 from flask_cors import CORS
 from sqlalchemy import exc
-from database.models import setup_db, db_drop_and_create_all, Movie, Actor
-from auth.auth import AuthError, requires_auth
+from models import setup_db, Movie, Actor
+from auth import AuthError, requires_auth
 
 database_path = "postgresql://postgres:password@localhost:5432/castingagency"
 
