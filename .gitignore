@@ -1,2 +1,3 @@
 # Ignored files
-/__pychache__git
+__pychache__
+.idea
