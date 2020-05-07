@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
-database_path = "postgres://ogaxpfjowkkyiu:00d1acf3b6ff4679db382818a93f7a56b2575ab7471e6d6d2ade4d006e98e37d@ec2-52-71-55-81.compute-1.amazonaws.com:5432/d9kp5t02bed3ge"
+database_path = "postgres://ogaxpfjowkkyiu:00d1acf3b6ff4679db382818a93f7a56b2575ab7471e6d6d2ade4d006e98e37d" \
+                "@ec2-52-71-55-81.compute-1.amazonaws.com:5432/d9kp5t02bed3ge"
 
 db = SQLAlchemy()
 
@@ -60,7 +61,7 @@ class Actor(db.Model):
 
     def __init__(self, name, age, gender):
         self.name = name
-        self.age = age,
+        self.age = age
         self.gender = gender
 
     def formatted(self):

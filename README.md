@@ -2,12 +2,15 @@
 ## Full Stack Nano Degree - Final Project
 
 ### About
-This is the capstone project for Udacitys Full Stack Nano Degree for Web Development. The goal of this project to
+This is the capstone project for Udacitys Full Stack Web Development Nano Degree. The goal of this project to
 utilize all of the skills learned from the course and apply them to creating a full stack application.
 
 The application follows the guidelines given for creating a casting agency that stores and delivers information on 
 actors and movies.
-* https://capstone-casting-agency-dtradd.herokuapp.com/
+
+#####Live app hosted on Heroku:
+
+https://capstone-casting-agency-dtradd.herokuapp.com/
 
 ### API
 In order for a visitor to use the website, they must be authenticated. There are three seperate roles, with varying 
@@ -155,8 +158,8 @@ curl -H "Content-Type: application/json" /
 ####Dependencies
 
 ```
-python -m venv env
-env/bin/activate
+OPTIONAL:python -m venv env
+OPTIONAL:env/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -185,6 +188,6 @@ set FLASK_DEBUG=true
 ### Unit Tests
 
 In order to run the unit tests within the repo, the following steps must be taken.
-* Create a test database named 'castingagency_test' within Postgresql.
+* Create a test database named 'castingagency_test'.
 * Run the following file with Python.
 ```python test_app.py```
