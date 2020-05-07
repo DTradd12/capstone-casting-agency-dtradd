@@ -104,9 +104,9 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_create_new_movie_casting_director(self):
-        res = self.client().post('/movies/create', headers=self.headers_casting_director,
-                                 json=self.new_movie)
+        res = self.client().post('/movies/create', headers=self.headers_casting_director, json=self.new_movie)
         data = json.loads(res.data)
+
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['message'], {'error': 'incorrect permissions', 'status code': 401})
 
@@ -137,8 +137,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     #################################################################################################################
     # EXECUTIVE PRODUCER PERMISSIONS
     def test_create_new_movies_executive_producer(self):
-        res = self.client().post('/movies/create', headers=self.headers_executive_producer,
-                                 json=self.new_movie)
+        res = self.client().post('/movies/create', headers=self.headers_executive_producer, json=self.new_movie)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
