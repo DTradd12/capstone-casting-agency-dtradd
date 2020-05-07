@@ -4,38 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db
 
-assistant_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
-                  '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5Y2ZjNzNkZ' \
-                  'TQzMWEwYzhkNjdiYjNkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODcwMjI4MywiZXh' \
-                  'wIjoxNTg4Nzg4NjgzLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb' \
-                  '3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.awYpPoYOxk-' \
-                  'ZDlnmeDYNCLXkthlC9pKI2s7GFhNJBTaV4ETdgx7_6NGEfjLH5DMDWX0rUdkppxmraS0AjL58yJdjUP' \
-                  '2HEwtkiFpe9qvggsQXRLlHis1bWyYFI3irg45Ctmlnm6BuBPLM-0rFQRP_t2BU_YxnmTTjy-NkohFBZ' \
-                  'KfxaM9T-VJPAfZBeLI0ilemtnYznUlfI7brEAKnGVAnc-mejH39eyAWyrkp5QeMdYMT8LGJrq0ybP3' \
-                  '8rCurEdx7-ZjAoqv22rN5tjHqKIcnp9a92nMzB64qy1ohB6yBGGQOMIij1qYZyr7aKJDOKKcyZjtz1' \
-                  '7lh_lvrtBb3onuz6A '
-director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
-                 '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWViMTkwYTE1' \
-                 'NGIxNGMwYzEyNzk3MDJiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NjgxMiwiZ' \
-                 'XhwIjoxNTg4NzgzMjEyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsIn' \
-                 'Njb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZWRpdDphY3RvciIsImVkaXQ' \
-                 '6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiXX0.bxRBQPrpSlPZ' \
-                 'ojqeKSNdkvoVZOQ8IbnMCChx8agPQiAPYzXbGLHQfSK1LcBnnXCcRM_ozKsRGeUdpOllOt59h1aA6' \
-                 'UquUScIru-ysx-5XJIeJywgbzK0n_jSormEGO8-vvjvIfdJYKKB0hGckMriEuI_bkdG2OsIfnD6mA' \
-                 'lvt8zdiNuHH3PvhC_u2-ObbZqbB-caz8lVsgw2yg8a2Rb5yBeembuezSBPxlr6ArjF4DFLk6ufHp2R' \
-                 'Zn1Ll6Qg7PG72xosHqEMKjVB6Jet5CjbMV6a948geivm5jfML0NtoBxR7ZCkp9hUuitPp_KmTiIBN0' \
-                 '-G1vwyWaC_ztGe2xMmQQ '
-producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
-                 '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5NDkyMTAy' \
-                 'NGU0YmMwYmUzNzM1ZjI2IiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODY5NzQ2MiwiZ' \
-                 'XhwIjoxNTg4NzgzODYyLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsIn' \
-                 'Njb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZW' \
-                 'RpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YW' \
-                 'N0b3IiLCJwb3N0Om1vdmllIl19.ZBUkhDbVByD6QxcW39vzz0L1jsdKaPqaAq_DqOuvEPZl2lQzi' \
-                 'fXx1pK8tHrAGbJOE-kdDhMLjjWONzTn-VFy870Gof1veLmzmO-BOAPX-UkpEsROtOodewubVYo20-' \
-                 'vJtGv1XbMC83cBRBM_CEw9YAZ1yTXR0oU5nyBvr9wk4BeXBSKlOlTMjXRVlXOxRfxrU0pLU2-D5SW' \
-                 'dpSExug1o0z1SqXp547hBkfnjvHDNMCf3WZw6vl2SJ6o5DtArkYlHN1UGNxbjZcFPv9Cu5PGyu7PC' \
-                 'wJ6vNz3F6XCI0GsPcjLCV2vJPjr_4fU7V6g1E96tryXooqCXOgQl8aU5EUZ7Uw '
+assistant_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5Y2ZjNzNkZTQzMWEwYzhkNjdiYjNkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODgxMjA4MCwiZXhwIjoxNTg4ODk4NDgwLCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.AybsiBMMmIEg0_mUqL_Gn668-NAuojQCjvvdn41h31pM5JIiOUsuHd_pbibxcH9Pm0QXNHzYu7-ikD5DNDyJR1bhhBkZjYzOrdwuF50F7u7zlgSoHet41PgNld81BsSHs0c3-jNMZxOgXUivcwWp4I0nn2GNkBVmmg0lFKfSnbiOb2DXS-U3HTedJcbAVpAHqeiPBq7cZR9my5GznBjMtruLvCX4tD4ZN8knVEarTh6D1ddmzPyA9NNROgFpG1TrWbx1Q8t2GJGF8vfTm9DnKIOTXv8EUtipKJRK_4hjqc_yCesJhyrVtvQTgyionFtFiVRlc-QyXB9GYUFmllfSRw'
+director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWViMTkwYTE1NGIxNGMwYzEyNzk3MDJiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODgxMjEyOCwiZXhwIjoxNTg4ODk4NTI4LCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZWRpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiXX0.BXlM1_5rMraRZ5z1_OSnN4AdK3BknG8FdhPdYhUIl-1ZtzxCr_3cmfhxfMRCZ8hwh-I5uYhdx9XJujXv9lH4WSjQLwsK8cLQerup6PN9k-5LrrVNcToJhK99OHqtjVN0cWsA0VMMxfKPWG08Wt4s3oiCWnDPgW3gnvyRw2EM65h0EQMpAQfjT0Um78wf-tyhYwvNoCG1liADXHuxi4Xee9dcWQ6lPSIRJYQAWFopU5oxFJpwpze6xuX7czmMczLu-yToLtiCUw6hgTFwDjDq2SjD9zU8hfGYcZTnFGQry_l0-KcihTOdwnmM8qhLVtdu5WpSOWlFmOmWj43c4YS-bw'
+producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5NDkyMTAyNGU0YmMwYmUzNzM1ZjI2IiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODgxMjA0NiwiZXhwIjoxNTg4ODk4NDQ2LCJhenAiOiJwd2RnZGFxcDg5SXdkbnZnM2N3alpvbE14M0VIM3NhOSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZWRpdDphY3RvciIsImVkaXQ6bW92aWUiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBvc3Q6YWN0b3IiLCJwb3N0Om1vdmllIl19.wXIyCQIOe78sH58KKeMrifVY5-6pOWa5TxrX6c9BPNmkeBOjDq7L5dKEYk-OLDt8ZXXmW0JkIeMCtfQ5HCgmHR-e6qnezrclcki5WawhKBzpF-4zw3jdG9Z9uY7wLFqi6c41lD6I_YEmzI-psK5QeaH7s1uifEOFoyowO2ADbvyCyRRN9LxerAoJNU261VC4eq917CgujWOjLM2ETw0_DVlx17KjRq-UgqUUqFIIe8fB3k7_pYBLLDbudcDEhkA9Cl7OmC5LJNX6rHMQLCiwHzwWFdsuQkwmPBcu1xQkqK5qh0fcC6sqNxIIZZp2OYJRwj1daiA-9mtcGEBZ99m1kQ'
 
 
 class CastingAgencyTestCase(unittest.TestCase):
@@ -84,16 +55,12 @@ class CastingAgencyTestCase(unittest.TestCase):
         data = json.loads(response.data)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['movies'])
 
     def test_get_actors_casting_assistant(self):
         response = self.client().get('/actors', headers=self.headers_casting_assistant)
         data = json.loads(response.data)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['actors'])
 
     def test_create_new_actor_casting_assistant(self):
         res = self.client().post('/actors/create', headers=self.headers_casting_assistant,

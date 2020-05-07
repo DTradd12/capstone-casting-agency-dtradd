@@ -36,8 +36,10 @@ levels of permissions.
 
 Retrieves a list of all actors.
 
+Minumum role required: Casting Assistant
+
 ``` 
-curl -H "authorization: Bearer <YOUR TOKEN>"
+curl -H "authorization: Bearer <YOUR TOKEN>" /
      -X GET https://capstone-casting-agency-dtradd.herokuapp.com/actors
 ```
 
@@ -45,8 +47,10 @@ curl -H "authorization: Bearer <YOUR TOKEN>"
 
 Retrieves a list of all movies.
 
+Minumum role required: Casting Assistant
+
 ``` 
-curl -H "authorization: Bearer <YOUR TOKEN>"
+curl -H "authorization: Bearer <YOUR TOKEN>" /
      -X GET https://capstone-casting-agency-dtradd.herokuapp.com/movies
 ```
 
@@ -55,8 +59,10 @@ curl -H "authorization: Bearer <YOUR TOKEN>"
 
 Retrieves a specific actors data.
 
+Minumum role required: Casting Assistant
+
 ``` 
-curl -H "authorization: Bearer <YOUR TOKEN>"
+curl -H "authorization: Bearer <YOUR TOKEN>" /
      -X GET https://capstone-casting-agency-dtradd.herokuapp.com/actors/<int>
 ```
 
@@ -64,8 +70,10 @@ curl -H "authorization: Bearer <YOUR TOKEN>"
 
 Retrieves a specific movies data.
 
+Minumum role required: Casting Assistant
+
 ``` 
-curl -H "authorization: Bearer <YOUR TOKEN>"
+curl -H "authorization: Bearer <YOUR TOKEN>" /
      -X GET https://capstone-casting-agency-dtradd.herokuapp.com/movies/<int>
 ```
 
@@ -73,8 +81,10 @@ curl -H "authorization: Bearer <YOUR TOKEN>"
 
 Deletes a specific actor from the database.
 
+Minumum role required: Casting Director
+
 ``` 
-curl -H "authorization: Bearer <YOUR TOKEN>"
+curl -H "authorization: Bearer <YOUR TOKEN>" /
      -X DELETE https://capstone-casting-agency-dtradd.herokuapp.com/actors/<int>
 ```
 
@@ -82,8 +92,10 @@ curl -H "authorization: Bearer <YOUR TOKEN>"
 
 Deletes a specific movie from the database.
 
+Minumum role required: Executive Producer
+
 ``` 
-curl -H "authorization: Bearer <YOUR_TOKEN>"
+curl -H "authorization: Bearer <YOUR_TOKEN>" /
      -X DELETE https://capstone-casting-agency-dtradd.herokuapp.com/movies/<int>
 ```
 
@@ -91,10 +103,12 @@ curl -H "authorization: Bearer <YOUR_TOKEN>"
 
 Creates a new actor.
 
+Minumum role required: Casting Director
+
 ```
-curl -H "Content-Type: application/json" 
-     -H "authorization: Bearer <YOUR_TOKEN>"
-     -d "{\"name\": \"Steve Carrell\", \"age\": 55, \"gender\":\"male\"}" 
+curl -H "Content-Type: application/json" /
+     -H "authorization: Bearer <YOUR_TOKEN>" /
+     -d "{\"name\": \"Steve Carrell\", \"age\": 55, \"gender\":\"male\"}" /
      -X POST https://capstone-casting-agency-dtradd.herokuapp.com/actors/create
 ```
 
@@ -102,10 +116,12 @@ curl -H "Content-Type: application/json"
 
 Creates a new movie.
 
+Minumum role required: Executive Producer
+
 ```
-curl -H "Content-Type: application/json" 
-     -H "authorization: Bearer <YOUR_TOKEN>"
-     -d "{\"title\": \"Star Wars\", \"release_date\": \"May 18, 1980\"}"
+curl -H "Content-Type: application/json" /
+     -H "authorization: Bearer <YOUR_TOKEN>" /
+     -d "{\"title\": \"Star Wars\", \"release_date\": \"May 18, 1980\"}" /
      -X POST https://capstone-casting-agency-dtradd.herokuapp.com/movies/create
 ```
 
@@ -113,10 +129,12 @@ curl -H "Content-Type: application/json"
 
 Edits a specific actors data.
 
+Minumum role required: Casting Director
+
 ```
-curl -H "Content-Type: application/json" 
-     -H "authorization: Bearer <YOUR_TOKEN>"
-     -d "{\"name\": \"Bruce Willis\"}" 
+curl -H "Content-Type: application/json" /
+     -H "authorization: Bearer <YOUR_TOKEN>" /
+     -d "{\"name\": \"Bruce Willis\"}" /
      -X PATCH https://capstone-casting-agency-dtradd.herokuapp.com/actors/<id>
 ```
 
@@ -124,9 +142,49 @@ curl -H "Content-Type: application/json"
 
 Edits a specific movies data.
 
+Minumum role required: Casting Director
+
 ```
-curl -H "Content-Type: application/json" 
-     -H "authorization: Bearer <YOUR_TOKEN>"
-     -d "{\"title\": \"The Sixth Sense\"}" 
+curl -H "Content-Type: application/json" /
+     -H "authorization: Bearer <YOUR_TOKEN>" /
+     -d "{\"title\": \"The Sixth Sense\"}" /
      -X PATCH https://capstone-casting-agency-dtradd.herokuapp.com/movies/<id>
 ```
+
+###Installation
+####Dependencies
+
+```
+python -m venv env
+env/bin/activate
+pip install -r requirements.txt
+```
+
+#### Database Setup
+
+Log into your database with psql commands.
+
+```
+psql -U <username> -p <port>
+Enter password when prompted
+```
+Once logged in:
+```
+create database castingagency;
+```
+
+#### Running the Server Locally
+
+The following environment variables must be set:
+```
+set FLASK_APP=APP
+set FLASK_ENV=development
+set FLASK_DEBUG=true
+```
+
+### Unit Tests
+
+In order to run the unit tests within the repo, the following steps must be taken.
+* Create a test database named 'castingagency_test' within Postgresql.
+* Run the following file with Python.
+```python test_app.py```

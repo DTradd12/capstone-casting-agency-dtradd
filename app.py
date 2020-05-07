@@ -31,14 +31,12 @@ def create_app(test_config=None):
         actors = Actor.query.order_by(Actor.id)
         actor_list = [actor.formatted() for actor in actors]
 
-        if len(actor_list) == 0:
-            abort(404)
-        else:
-            return jsonify({
-                "success": True,
-                "status_code": 200,
-                "actors": actor_list
-            })
+        return jsonify({
+            "success": True,
+            "status_code": 200,
+            "actors": actor_list,
+            "total_actors": len(actor_list)
+        })
 
     @app.route("/movies", methods=['GET'])
     @requires_auth(permission='get:movies')
@@ -46,14 +44,12 @@ def create_app(test_config=None):
         movies = Movie.query.order_by(Movie.id)
         movie_list = [movie.formatted() for movie in movies]
 
-        if len(movie_list) == 0:
-            abort(404)
-        else:
-            return jsonify({
-                "success": True,
-                "status_code": 200,
-                "movies": movie_list
-            })
+        return jsonify({
+            "success": True,
+            "status_code": 200,
+            "movies": movie_list,
+            "total_movies": len(movie_list)
+        })
 
     @app.route("/actors/<int:actor_id>", methods=['GET'])
     @requires_auth(permission='get:actors')
