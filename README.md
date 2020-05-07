@@ -8,7 +8,7 @@ utilize all of the skills learned from the course and apply them to creating a f
 The application follows the guidelines given for creating a casting agency that stores and delivers information on 
 actors and movies.
 
-####Live app hosted on Heroku:
+##### Live app hosted on Heroku:
 
 https://capstone-casting-agency-dtradd.herokuapp.com/
 
@@ -16,24 +16,24 @@ https://capstone-casting-agency-dtradd.herokuapp.com/
 In order for a visitor to use the website, they must be authenticated. There are three seperate roles, with varying 
 levels of permissions.
 
-### Roles:
-#### Casting Assistant
+#### Roles:
+##### Casting Assistant
 * GET: actors and movies
 
-####Casting Director
+##### Casting Director
 * GET: actors and movies
 * POST: actors 
 * DELETE: actors
 * PATCH: actors or movies
 
-####Executive Producer
+##### Executive Producer
 * GET: actors and movies
 * POST: actors and movies
 * DELETE: actors and movies
 * PATCH: actors or movies
 
 
-##Endpoint examples and behaviours.
+### Endpoint examples and behaviours.
 
 **GET** `/actors`
 
@@ -154,8 +154,8 @@ curl -H "Content-Type: application/json" /
      -X PATCH https://capstone-casting-agency-dtradd.herokuapp.com/movies/<id>
 ```
 
-##Installation
-###Dependencies
+### Installation
+#### Dependencies
 
 ```
 OPTIONAL:python -m venv env
@@ -163,7 +163,7 @@ OPTIONAL:env/bin/activate
 pip install -r requirements.txt
 ```
 
-### Database Setup
+#### Database Setup
 
 Log into your database with psql commands.
 
@@ -176,7 +176,7 @@ Once logged in:
 create database castingagency;
 ```
 
-### Running the Server Locally
+#### Running the Server Locally
 
 The following environment variables must be set:
 ```
@@ -185,7 +185,7 @@ set FLASK_ENV=development
 set FLASK_DEBUG=true
 ```
 
-## Unit Tests
+### Unit Tests
 
 In order to run the unit tests within the repo, the following steps must be taken.
 * Create a test database named 'castingagency_test'.
