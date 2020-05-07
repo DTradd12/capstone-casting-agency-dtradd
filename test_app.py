@@ -12,7 +12,7 @@ assistant_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIa
                   'uojQCjvvdn41h31pM5JIiOUsuHd_pbibxcH9Pm0QXNHzYu7-ikD5DNDyJR1bhhBkZjYzOrdwuF50F7u7zl' \
                   'gSoHet41PgNld81BsSHs0c3-jNMZxOgXUivcwWp4I0nn2GNkBVmmg0lFKfSnbiOb2DXS-U3HTedJcbAVpA' \
                   'HqeiPBq7cZR9my5GznBjMtruLvCX4tD4ZN8knVEarTh6D1ddmzPyA9NNROgFpG1TrWbx1Q8t2GJGF8vfTm' \
-                  '9DnKIOTXv8EUtipKJRK_4hjqc_yCesJhyrVtvQTgyionFtFiVRlc-QyXB9GYUFmllfSRw '
+                  '9DnKIOTXv8EUtipKJRK_4hjqc_yCesJhyrVtvQTgyionFtFiVRlc-QyXB9GYUFmllfSRw'
 director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
                  '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWViMTkwYTE1NGIxNGMw' \
                  'YzEyNzk3MDJiIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODgxMjEyOCwiZXhwIjoxNTg4ODk4NT' \
@@ -22,7 +22,7 @@ director_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF
                  'fMRCZ8hwh-I5uYhdx9XJujXv9lH4WSjQLwsK8cLQerup6PN9k-5LrrVNcToJhK99OHqtjVN0cWsA0VMMxfKPWG' \
                  '08Wt4s3oiCWnDPgW3gnvyRw2EM65h0EQMpAQfjT0Um78wf-tyhYwvNoCG1liADXHuxi4Xee9dcWQ6lPSIRJYQA' \
                  'WFopU5oxFJpwpze6xuX7czmMczLu-yToLtiCUw6hgTFwDjDq2SjD9zU8hfGYcZTnFGQry_l0-KcihTOdwnmM8q' \
-                 'hLVtdu5WpSOWlFmOmWj43c4YS-bw '
+                 'hLVtdu5WpSOWlFmOmWj43c4YS-bw'
 producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF8xWkFXOGdLcyJ9' \
                  '.eyJpc3MiOiJodHRwczovL2R0cmFkZC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5NDkyMTAyNGU0YmMwY' \
                  'mUzNzM1ZjI2IiwiYXVkIjoiQ2FzdGluZ0FnZW5jeSIsImlhdCI6MTU4ODgxMjA0NiwiZXhwIjoxNTg4ODk4NDQ2L' \
@@ -32,7 +32,7 @@ producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY3bE5XenRSWEpIaF
                  'Wa5TxrX6c9BPNmkeBOjDq7L5dKEYk-OLDt8ZXXmW0JkIeMCtfQ5HCgmHR-e6qnezrclcki5WawhKBzpF-4zw3jdG' \
                  '9Z9uY7wLFqi6c41lD6I_YEmzI-psK5QeaH7s1uifEOFoyowO2ADbvyCyRRN9LxerAoJNU261VC4eq917CgujWOj' \
                  'LM2ETw0_DVlx17KjRq-UgqUUqFIIe8fB3k7_pYBLLDbudcDEhkA9Cl7OmC5LJNX6rHMQLCiwHzwWFdsuQkwmPBc' \
-                 'u1xQkqK5qh0fcC6sqNxIIZZp2OYJRwj1daiA-9mtcGEBZ99m1kQ '
+                 'u1xQkqK5qh0fcC6sqNxIIZZp2OYJRwj1daiA-9mtcGEBZ99m1kQ'
 
 
 class CastingAgencyTestCase(unittest.TestCase):
